@@ -117,7 +117,7 @@ function draw() {
   }
 
   if(outcome) {
-    context.clearRect(0, 0, canvas.width, canvas.height);    
+    // context.clearRect(0, 0, canvas.width, canvas.height);
     createResultsScreen(winnerColor);
     clearInterval(game);
   }
@@ -150,7 +150,7 @@ function draw() {
   };
 };
 
-const game = setInterval(draw, 100);
+let game = setInterval(draw, 100);
 
 function createResultsScreen(color) {
   const resultNode = document.createElement('div');
@@ -174,7 +174,7 @@ function createResultsScreen(color) {
   const replayButton = document.createRange().createContextualFragment(`
     <button style={font-family='Bungee, cursive';
     text-transform='uppercase'; padding='10px 30px'; font-size='1.2rem';
-    margin='0 auto'; cursor='pointer'; onClick=resetGame}>Replay (Enter)</button>`);
+    margin='0 auto'; cursor='pointer'; onClick=resetGame()>Replay (Enter)</button>`);
 
   resultNode.appendChild(resultText);
   resultNode.appendChild(replayButton);
@@ -191,7 +191,7 @@ function resetGame() {
   const result = document.getElementById("result");
   if(result) result.remove();
 
-  // context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
   drawBackground();
 
   playableCells = getPlayableCells(canvas, unit);
